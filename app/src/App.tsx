@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 
 function App() {
   const startValue: number = 1;
@@ -10,7 +9,7 @@ function App() {
 
   useEffect(() => {
     const startTime = performance.now();
-    let animationId: number;
+    let counter: number;
 
     const countUp = () => {
       const elapsed = performance.now() - startTime;
@@ -21,55 +20,45 @@ function App() {
       setCount(currentValue);
 
       if (progress < 1) {
-        animationId = requestAnimationFrame(countUp);
+        counter = requestAnimationFrame(countUp);
       } else {
-        setCount(endValue);
         setFinished(true);
       }
     };
 
-    animationId = requestAnimationFrame(countUp);
+    counter = requestAnimationFrame(countUp);
 
     return () => {
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(counter);
     };
   }, []);
 
   return (
     <div>
-      <div className="logo tagline">
-        <img src="../public/icon.png" alt="Lemonews logo" width="30px" />
+      <a href="/" className="logo">
+        <img src="/icon.png" alt="Lemonews logo" width="30px" />
         <span>Lemonews</span>
-      </div>
-      <div className="container">
-        <p className="tagline">Fresh News. Squeezed into bites.</p>
-        <p className="countup">
-          {count}
-          {finished && "M"}
-        </p>
-        <p>subscribers</p>
-        <p>
-          Join {endValue}M+ subscribers getting their weekly dose of Lemonews
-          dropped straight into your inbox.
-        </p>
-        <div className="button">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="#000"
-            viewBox="0 0 24 24"
-            strokeWidth="0.5"
-            stroke="#fff"
-            style={{ width: "25px" }}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"
-            />
-          </svg>{" "}
-          Subscribe Now
+      </a>
+      <main className="container">
+        <h1 className="tagline">
+          <span className="underline">Fresh News.</span> Squeezed into Bites.
+        </h1>
+        <div className="countup">
+          <p className="number">
+            {count}
+            {finished && "M"}
+          </p>
+          <p className="text">subscribers</p>
         </div>
-      </div>
+        <p className="description">
+          Join {endValue}M+ subscribers getting their weekly dose of Lemonews
+          dropped into your inbox.
+        </p>
+        <form className="registration">
+          <input type="email" placeholder="Input your email"></input>
+          <button>Subscribe </button>
+        </form>
+      </main>
     </div>
   );
 }
