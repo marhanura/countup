@@ -1,6 +1,6 @@
 # countup
 
-Promotional UI that displays the number of subscribers on the homepage.
+Lemonews is a news outlet with subscription option which sends weekly newsletter to its subscribers. The page shows a promotional UI that displays the number of subscribers on the homepage.
 
 How to run the project:
 
@@ -8,6 +8,8 @@ How to run the project:
 2. Go inside the /app folder
 3. Run `npm install`
 4. Run `npm run dev`
+
+Or view live on [the deployed web](https://lemonews-countup.web.app)
 
 Code explanation:
 
